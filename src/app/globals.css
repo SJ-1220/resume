@@ -1,26 +1,335 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --bg: #ffffff;
+  --fg: #18181b;
+  --fg-muted: #52525b;
+  --fg-subtle: #8a8a94;
+  --line: #e6e6ea;
+  --accent: #4f46e5;
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  border-top: 3px solid var(--accent);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Apple SD Gothic Neo", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+/* ---------- layout ---------- */
+
+.resume {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 6rem;
+}
+
+.resume__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 2.25rem;
+}
+
+.resume__wordmark {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.resume__nav a {
+  font-size: 0.9rem;
+  color: var(--fg-subtle);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.resume__nav a:hover {
+  color: var(--accent);
+}
+
+/* ---------- hero ---------- */
+
+.resume__hero {
+  padding: 3.5rem 0 0.5rem;
+}
+
+.resume__hero h1 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.resume__hero p {
+  margin: 0;
+  max-width: 34rem;
+  font-size: clamp(1.02rem, 2.4vw, 1.18rem);
+  color: var(--fg-muted);
+}
+
+/* ---------- sections ---------- */
+
+.resume section {
+  margin-top: 4.5rem;
+}
+
+.resume h2 {
+  margin: 0 0 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--fg-subtle);
+}
+
+.resume__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem 2.5rem;
+  padding-bottom: 2.75rem;
+}
+
+.resume__row + .resume__row {
+  margin-top: 2.75rem;
+  border-top: 1px solid var(--line);
+  padding-top: 2.75rem;
+}
+
+@media (min-width: 720px) {
+  .resume__row {
+    grid-template-columns: 11rem 1fr;
+  }
+}
+
+.resume__meta h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+
+.resume__meta .role {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--fg-muted);
+}
+
+.resume__meta .period {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.82rem;
+  color: var(--fg-subtle);
+}
+
+/* ---------- projects ---------- */
+
+.resume__projects {
+  display: grid;
+  gap: 3rem;
+}
+
+.resume__projects--personal {
+  gap: 3.5rem;
+}
+
+.resume__summary {
+  margin: 0 0 1.5rem;
+  color: var(--fg-muted);
+}
+
+.resume__project > h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.resume__project-meta {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  font-size: 0.82rem;
+  color: var(--fg-subtle);
+}
+
+.resume__project-meta .status {
+  color: var(--accent);
+}
+
+.block {
+  margin-top: 1.15rem;
+}
+
+.block > .label {
+  margin: 0 0 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.resume p {
+  margin: 0;
+}
+
+.resume ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.block > ul:not(.stack):not(.links) > li {
+  position: relative;
+  margin: 0.4rem 0;
+  padding-left: 1.1rem;
+}
+
+.block > ul:not(.stack):not(.links) > li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.resume code,
+.code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 0.85em;
+  background: #f1f1f4;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  word-break: break-all;
+}
+
+.ps-item {
+  margin: 0.7rem 0 !important;
+}
+
+.ps-item b {
+  font-weight: 600;
+}
+
+/* ---------- stack / skill pills ---------- */
+
+.stack {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.stack li {
+  margin: 0;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+}
+
+.stack li::before {
+  content: none;
+}
+
+.resume__row--skill {
+  padding-bottom: 1.5rem;
+}
+
+.resume__row--skill .role {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--fg-muted);
+}
+
+.resume__row--skill .period {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.82rem;
+  color: var(--fg-subtle);
+}
+
+.resume__row--skill + .resume__row--skill {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+/* ---------- links / contact ---------- */
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.links li {
+  margin: 0;
+}
+
+.links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+}
+
+.links a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.resume a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.resume a:hover {
+  text-decoration: underline;
+}
+
+.contact ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.resume__footer {
+  margin-top: 5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.resume__footer p {
+  font-size: 0.8rem;
+  color: var(--fg-subtle);
+}
+
+.resume__footer a {
+  color: var(--fg-subtle);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.resume__footer a:hover {
+  color: var(--accent);
 }

@@ -1,21 +1,7 @@
 # resume
 
-Developer portfolio — Next.js (App Router) static export, deployed to GitHub Pages.
+**Sunjin Kim — developer portfolio.**
 
-- English (default): `/`
-- Korean: `/ko`
+**Link:** [English](https://sj-1220.github.io/resume/) · [한국어](https://sj-1220.github.io/resume/ko/)
 
-## Develop
-
-```bash
-npm run dev
-```
-
-Because `next.config.ts` sets `basePath: "/resume"`, the dev site is at
-`http://localhost:3000/resume/` (the bare `/` returns 404 — that's expected).
-
-## Build (static export → `out/`)
-
-```bash
-npm run build
-```
+Local dev: `npm run dev`, then open `http://localhost:3000/resume/` (`basePath` makes the bare `/` 404).

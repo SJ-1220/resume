@@ -4,6 +4,10 @@ export const ui: Record<Locale, UIStrings> = {
   en: {
     toggle: "한국어",
     toggleHref: "/ko/",
+    pdfHref: "/print/",
+    pdfLabel: "PDF",
+    backHref: "/",
+    backLabel: "← Portfolio",
     credit: {
       beforeLink: "Layout inspired by ",
       linkText: "HyunSeob's résumé",
@@ -27,6 +31,10 @@ export const ui: Record<Locale, UIStrings> = {
   ko: {
     toggle: "English",
     toggleHref: "/",
+    pdfHref: "/ko/print/",
+    pdfLabel: "PDF",
+    backHref: "/ko/",
+    backLabel: "← 포트폴리오",
     credit: {
       beforeLink: "레이아웃은 ",
       linkText: "이현섭님의 이력서",
@@ -106,6 +114,14 @@ export const resume: Record<Locale, ResumeData> = {
           },
           { label: "GitHub", href: "https://github.com/SJ-1220/flutter-mandalart" },
         ],
+        images: [
+          { src: "/resume/projects/manda_9x9.jpg", alt: "Manda — 9×9 Mandalart grid" },
+          { src: "/resume/projects/manda_3x3.jpg", alt: "Manda — 3×3 focus view" },
+          {
+            src: "/resume/projects/manda_chart.jpg",
+            alt: "Manda — achievement radar chart",
+          },
+        ],
       },
       {
         title: "NaviyNote v2 — splitting a monolith into web + API",
@@ -152,6 +168,13 @@ export const resume: Record<Locale, ResumeData> = {
             href: "https://github.com/SJ-1220/NaviyNote_api",
           },
         ],
+        images: [
+          {
+            src: "/resume/projects/architecture-refactor.en.svg",
+            alt: "Architecture refactor: Next.js full-stack monolith split into a Next.js web app and an Express API, joined by a new REST + JWT boundary.",
+            wide: true,
+          },
+        ],
       },
       {
         title: "NaviyNote v1 — offline-first memo & schedule web app",
@@ -185,6 +208,16 @@ export const resume: Record<Locale, ResumeData> = {
           "react-dnd",
         ],
         links: [{ label: "GitHub", href: "https://github.com/SJ-1220/NaviyNote" }],
+        images: [
+          {
+            src: "/resume/projects/naviynote_v1_memo.png",
+            alt: "NaviyNote v1 — memo grid with drag-and-drop sorting",
+          },
+          {
+            src: "/resume/projects/naviynote_v1_calendar.png",
+            alt: "NaviyNote v1 — monthly calendar view",
+          },
+        ],
       },
     ],
     skills: [
@@ -311,6 +344,11 @@ export const resume: Record<Locale, ResumeData> = {
           },
           { label: "GitHub", href: "https://github.com/SJ-1220/flutter-mandalart" },
         ],
+        images: [
+          { src: "/resume/projects/manda_9x9.jpg", alt: "Manda — 9×9 만다라트 그리드" },
+          { src: "/resume/projects/manda_3x3.jpg", alt: "Manda — 3×3 집중 뷰" },
+          { src: "/resume/projects/manda_chart.jpg", alt: "Manda — 달성률 레이더 차트" },
+        ],
       },
       {
         title: "NaviyNote v2 — 모놀리식을 웹 + API로 분리",
@@ -357,6 +395,13 @@ export const resume: Record<Locale, ResumeData> = {
             href: "https://github.com/SJ-1220/NaviyNote_api",
           },
         ],
+        images: [
+          {
+            src: "/resume/projects/architecture-refactor.ko.svg",
+            alt: "아키텍처 리팩터링: Next.js 풀스택 모놀리식을 Next.js 웹 앱과 Express API로 분리하고, 그 사이에 REST + JWT 경계를 새로 도입.",
+            wide: true,
+          },
+        ],
       },
       {
         title: "NaviyNote v1 — 오프라인 퍼스트 메모·일정 웹앱",
@@ -390,6 +435,16 @@ export const resume: Record<Locale, ResumeData> = {
           "react-dnd",
         ],
         links: [{ label: "GitHub", href: "https://github.com/SJ-1220/NaviyNote" }],
+        images: [
+          {
+            src: "/resume/projects/naviynote_v1_memo.png",
+            alt: "NaviyNote v1 — 드래그 앤 드롭 메모 그리드",
+          },
+          {
+            src: "/resume/projects/naviynote_v1_calendar.png",
+            alt: "NaviyNote v1 — 월간 캘린더 뷰",
+          },
+        ],
       },
     ],
     skills: [

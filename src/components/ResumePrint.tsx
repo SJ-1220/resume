@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type {
   ProjectBlock as ProjectBlockType,
   ResumeData,
@@ -32,9 +33,14 @@ function PrintProject({
 
       {project.images && project.images.length > 0 ? (
         <div className="rp-shots">
-          {project.images.slice(0, 2).map((img) => (
+          {project.images.slice(0, 3).map((img) => (
             // eslint-disable-next-line @next/next/no-img-element
-            <img key={img.src} src={img.src} alt={img.alt} />
+            <img
+              key={img.src}
+              className={img.wide ? "shot shot--wide" : "shot"}
+              src={img.src}
+              alt={img.alt}
+            />
           ))}
         </div>
       ) : null}
@@ -68,8 +74,10 @@ function PrintProject({
         <div className="rp-links">
           {project.links.map((link) => (
             <div key={link.href} className="rp-link">
-              <a href={link.href}>{link.label}</a>{" "}
-              <span className="rp-url">{shortUrl(link.href)}</span>
+              <a href={link.href} target="_blank" rel="noopener noreferrer">
+                {link.label}
+              </a>{" "}
+              <span className="rp-linkurl">{shortUrl(link.href)}</span>
             </div>
           ))}
         </div>
@@ -89,11 +97,16 @@ export default function ResumePrint({
 }) {
   return (
     <div className="resume-print" lang={lang}>
-      <p className="rp-hint">
-        {lang === "ko"
-          ? "Ctrl / ⌘ + P → 대상을 “PDF로 저장”"
-          : "Ctrl / ⌘ + P → choose “Save as PDF”"}
-      </p>
+      <div className="rp-hint">
+        <Link href={ui.backHref} className="rp-back">
+          {ui.backLabel}
+        </Link>
+        <span className="rp-hint__tip">
+          {lang === "ko"
+            ? "Ctrl / ⌘ + P → “PDF로 저장” · “머리글 및 바닥글” 해제"
+            : "Ctrl / ⌘ + P → “Save as PDF” · turn off “Headers and footers”"}
+        </span>
+      </div>
 
       <header className="rp-header">
         <h1>{data.name}</h1>
@@ -105,8 +118,10 @@ export default function ResumePrint({
                 {i > 0 ? "   ·   " : ""}
                 {item.href ? (
                   <>
-                    <a href={item.href}>{text}</a>{" "}
-                    <span className="rp-url">{shortUrl(item.href)}</span>
+                    <a href={item.href} target="_blank" rel="noopener noreferrer">
+                      {text}
+                    </a>{" "}
+                    <span className="rp-linkurl">{shortUrl(item.href)}</span>
                   </>
                 ) : (
                   text

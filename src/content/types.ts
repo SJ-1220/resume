@@ -20,6 +20,8 @@ export interface ProjectImage {
   /** Path under public/, WITH the basePath, e.g. "/resume/projects/manda-grid.png" */
   src: string;
   alt: string;
+  /** Landscape figure (e.g. a diagram): render full-width instead of in the thumbnail row. */
+  wide?: boolean;
 }
 
 export interface ProjectBlock {
@@ -73,6 +75,12 @@ export interface Credit {
 export interface UIStrings {
   toggle: string;
   toggleHref: string;
+  /** Header link to the print/PDF view. */
+  pdfHref: string;
+  pdfLabel: string;
+  /** Print view: link back to the main portfolio page. */
+  backHref: string;
+  backLabel: string;
   credit: Credit;
   sections: {
     experience: string;

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="52 0 1128 632" width="1128" height="632" font-family="system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#1B2A3A"/>
+    </marker>
+    <marker id="ahc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#C6402A"/>
+    </marker>
+  </defs>
+
+  <rect x="52" y="0" width="1128" height="632" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="60" y="46" font-size="25" font-weight="600" fill="#003366">아키텍처 리팩터링 &#8212; 모놀리식에서 프론트엔드 / 백엔드 분리로</text>
+  <text x="60" y="72" font-size="13.5" fill="#5C6B7A">NaviyNote &#183; Next.js 풀스택 단일 앱  &#8594;  Next.js(web) + Express(api) 2-티어</text>
+  <line x1="60" y1="90" x2="1120" y2="90" stroke="#C9D4E0" stroke-width="1"/>
+
+  <!-- Panel headers -->
+  <text x="60" y="122" font-size="15" font-weight="700" letter-spacing="1" fill="#1B2A3A">BEFORE<tspan font-size="12.5" font-weight="400" letter-spacing="0" fill="#5C6B7A">  &#183; 모놀리식 구조</tspan></text>
+  <text x="604" y="122" font-size="15" font-weight="700" letter-spacing="1" fill="#1B2A3A">AFTER<tspan font-size="12.5" font-weight="400" letter-spacing="0" fill="#5C6B7A">  &#183; 프론트엔드 / 백엔드 분리</tspan></text>
+
+  <!-- Center divider -->
+  <line x1="590" y1="104" x2="590" y2="598" stroke="#C9D4E0" stroke-width="1" stroke-dasharray="2 4"/>
+
+  <!-- ============ CLIENT tier ============ -->
+  <rect x="189" y="150" width="260" height="44" rx="8" fill="#F4F6FA" stroke="#C9D4E0"/>
+  <text x="319" y="177" text-anchor="middle" font-size="13" fill="#1B2A3A">브라우저 / 사용자</text>
+
+  <rect x="731" y="150" width="260" height="44" rx="8" fill="#F4F6FA" stroke="#C9D4E0"/>
+  <text x="861" y="177" text-anchor="middle" font-size="13" fill="#1B2A3A">브라우저 / 사용자</text>
+
+  <!-- ============ APPLICATION tier ============ -->
+  <!-- BEFORE: single monolith box -->
+  <rect x="100" y="228" width="438" height="172" rx="10" fill="#F4F6FA" stroke="#003366" stroke-width="1.4"/>
+  <text x="120" y="253" font-size="13.5" font-weight="600" fill="#003366">naviynote<tspan font-size="11.5" font-weight="400" fill="#5C6B7A">  &#8212; Next.js 15 &#183; App Router</tspan></text>
+  <line x1="120" y1="264" x2="518" y2="264" stroke="#C9D4E0"/>
+  <text x="120" y="290" font-size="12" fill="#1B2A3A">Client Components &#183; Zustand 스토어</text>
+  <text x="120" y="315" font-size="12" fill="#1B2A3A">Server Components / 서버 fetch 함수</text>
+  <text x="120" y="340" font-size="12" fill="#1B2A3A">API Routes  <tspan font-family="ui-monospace,'Consolas',monospace" font-size="11" fill="#5C6B7A">/api/auth/[...nextauth]</tspan></text>
+
+  <!-- AFTER: web box -->
+  <rect x="624" y="226" width="474" height="112" rx="10" fill="#EEF3FB" stroke="#003366" stroke-width="1.4"/>
+  <text x="644" y="250" font-size="13" font-weight="600" fill="#003366">naviynote_web<tspan font-size="11.5" font-weight="400" fill="#5C6B7A">  &#8212; Next.js 16</tspan></text>
+  <line x1="644" y1="260" x2="1080" y2="260" stroke="#C9D4E0"/>
+  <text x="644" y="282" font-size="11.5" fill="#1B2A3A">UI 렌더링 &#183; Zustand 스토어 &#183; react-dnd</text>
+  <text x="644" y="302" font-size="11.5" fill="#1B2A3A">AuthContext &#183; authFetch  (accessToken 메모리, 401 &#8594; 자동 refresh)</text>
+  <text x="644" y="322" font-size="11.5" fill="#1B2A3A"><tspan font-family="ui-monospace,'Consolas',monospace" font-size="10.5" fill="#5C6B7A">lib/api/*.ts</tspan>  &#8212; REST 클라이언트</text>
+
+  <!-- AFTER: api box -->
+  <rect x="624" y="392" width="474" height="118" rx="10" fill="#EEF3FB" stroke="#003366" stroke-width="1.4"/>
+  <text x="644" y="416" font-size="13" font-weight="600" fill="#003366">naviynote_api<tspan font-size="11.5" font-weight="400" fill="#5C6B7A">  &#8212; Express 5 &#183; TypeScript</tspan></text>
+  <line x1="644" y1="426" x2="1080" y2="426" stroke="#C9D4E0"/>
+  <text x="644" y="448" font-size="11.5" fill="#1B2A3A">Routes  &#8594;  <tspan font-family="ui-monospace,'Consolas',monospace" font-size="10.5" fill="#5C6B7A">authenticateUser</tspan> (JWT 검증 미들웨어)</text>
+  <text x="644" y="468" font-size="11.5" fill="#1B2A3A">Controller  &#8594;  Service  &#8594;  Repository   (계층 분리)</text>
+  <text x="644" y="488" font-size="11.5" fill="#1B2A3A">Prisma ORM</text>
+
+  <!-- ============ DATA tier ============ -->
+  <rect x="100" y="536" width="205" height="44" rx="8" fill="#F4F6FA" stroke="#C9D4E0"/>
+  <text x="202" y="563" text-anchor="middle" font-size="11.5" fill="#1B2A3A">PostgreSQL &#183; Supabase</text>
+  <rect x="333" y="536" width="205" height="44" rx="8" fill="#F4F6FA" stroke="#C9D4E0"/>
+  <text x="435" y="563" text-anchor="middle" font-size="11.5" fill="#1B2A3A">Naver OAuth</text>
+
+  <rect x="624" y="536" width="225" height="44" rx="8" fill="#F4F6FA" stroke="#C9D4E0"/>
+  <text x="736" y="563" text-anchor="middle" font-size="11.5" fill="#1B2A3A">PostgreSQL &#183; Supabase</text>
+  <rect x="873" y="536" width="225" height="44" rx="8" fill="#F4F6FA" stroke="#C9D4E0"/>
+  <text x="985" y="563" text-anchor="middle" font-size="11.5" fill="#1B2A3A">Naver OAuth</text>
+
+  <!-- ============ Arrows: BEFORE ============ -->
+  <line x1="319" y1="194" x2="319" y2="226" stroke="#1B2A3A" stroke-width="1.4" marker-end="url(#ah)"/>
+  <line x1="202" y1="400" x2="202" y2="534" stroke="#1B2A3A" stroke-width="1.4" marker-end="url(#ah)"/>
+  <text x="192" y="460" text-anchor="end" font-family="ui-monospace,'Consolas',monospace" font-size="10.5" fill="#5C6B7A">supabase-js</text>
+  <text x="192" y="475" text-anchor="end" font-size="10.5" fill="#5C6B7A">직접 호출</text>
+  <line x1="435" y1="400" x2="435" y2="534" stroke="#1B2A3A" stroke-width="1.4" marker-end="url(#ah)"/>
+  <text x="445" y="467" font-size="10.5" fill="#5C6B7A">NextAuth</text>
+
+  <!-- ============ Arrows: AFTER ============ -->
+  <line x1="861" y1="194" x2="861" y2="224" stroke="#1B2A3A" stroke-width="1.4" marker-end="url(#ah)"/>
+
+  <!-- the new seam -->
+  <line x1="861" y1="340" x2="861" y2="390" stroke="#C6402A" stroke-width="2.4" marker-end="url(#ahc)"/>
+  <text x="878" y="360" font-family="ui-monospace,'Consolas',monospace" font-size="10.5" fill="#C6402A">REST API</text>
+  <text x="878" y="375" font-size="10.5" fill="#C6402A">JWT &#183; Bearer 토큰 + refresh 쿠키</text>
+
+  <line x1="736" y1="510" x2="736" y2="534" stroke="#1B2A3A" stroke-width="1.4" marker-end="url(#ah)"/>
+  <text x="726" y="527" text-anchor="end" font-size="10.5" fill="#5C6B7A">Prisma</text>
+  <line x1="985" y1="510" x2="985" y2="534" stroke="#1B2A3A" stroke-width="1.4" marker-end="url(#ah)"/>
+  <text x="995" y="527" font-size="10.5" fill="#5C6B7A">OAuth code 교환</text>
+
+  <!-- ============ Legend ============ -->
+  <line x1="100" y1="614" x2="126" y2="614" stroke="#C6402A" stroke-width="2.4"/>
+  <text x="134" y="618" font-size="11" fill="#5C6B7A">새로 도입된 네트워크 경계 &#8212; REST API + JWT 인증</text>
+  <line x1="470" y1="614" x2="496" y2="614" stroke="#1B2A3A" stroke-width="1.4"/>
+  <text x="504" y="618" font-size="11" fill="#5C6B7A">기존에도 있던 호출 경로</text>
+</svg>

@@ -5,6 +5,7 @@ import type {
   UIStrings,
 } from "@/content/types";
 import { withCode } from "@/lib/with-code";
+import ImageGallery from "@/components/ImageGallery";
 
 function ProjectBlock({
   project,
@@ -22,12 +23,7 @@ function ProjectBlock({
       </p>
 
       {project.images && project.images.length > 0 ? (
-        <div className="project-shots">
-          {project.images.map((img) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img key={img.src} src={img.src} alt={img.alt} loading="lazy" />
-          ))}
-        </div>
+        <ImageGallery images={project.images} />
       ) : null}
 
       <div className="block">
@@ -95,6 +91,10 @@ export default function Resume({
       <header className="resume__header">
         <span className="resume__wordmark">{data.name}</span>
         <nav className="resume__nav">
+          <Link href={ui.pdfHref}>{ui.pdfLabel}</Link>
+          <span className="resume__nav-sep" aria-hidden="true">
+            ·
+          </span>
           <Link href={ui.toggleHref}>{ui.toggle}</Link>
         </nav>
       </header>

@@ -134,15 +134,13 @@ export const resume: Record<Locale, ResumeData> = {
         ],
         stack: [
           "Next.js 16",
-          "React 19",
+          "React",
           "TypeScript",
-          "Tailwind CSS 4",
+          "Tailwind CSS",
           "Node.js",
-          "Express 5",
-          "Prisma 7",
+          "Express",
+          "Prisma",
           "PostgreSQL (Neon)",
-          "Zod",
-          "JWT",
         ],
         links: [
           {
@@ -177,7 +175,7 @@ export const resume: Record<Locale, ResumeData> = {
         ],
         stack: [
           "Next.js 15",
-          "React 19",
+          "React",
           "TypeScript",
           "Tailwind CSS",
           "Supabase (PostgreSQL)",
@@ -185,7 +183,6 @@ export const resume: Record<Locale, ResumeData> = {
           "NextAuth",
           "FullCalendar",
           "react-dnd",
-          "Vercel",
         ],
         links: [{ label: "GitHub", href: "https://github.com/SJ-1220/NaviyNote" }],
       },
@@ -342,15 +339,13 @@ export const resume: Record<Locale, ResumeData> = {
         ],
         stack: [
           "Next.js 16",
-          "React 19",
+          "React",
           "TypeScript",
-          "Tailwind CSS 4",
+          "Tailwind CSS",
           "Node.js",
-          "Express 5",
-          "Prisma 7",
+          "Express",
+          "Prisma",
           "PostgreSQL (Neon)",
-          "Zod",
-          "JWT",
         ],
         links: [
           {
@@ -385,7 +380,7 @@ export const resume: Record<Locale, ResumeData> = {
         ],
         stack: [
           "Next.js 15",
-          "React 19",
+          "React",
           "TypeScript",
           "Tailwind CSS",
           "Supabase (PostgreSQL)",
@@ -393,7 +388,6 @@ export const resume: Record<Locale, ResumeData> = {
           "NextAuth",
           "FullCalendar",
           "react-dnd",
-          "Vercel",
         ],
         links: [{ label: "GitHub", href: "https://github.com/SJ-1220/NaviyNote" }],
       },

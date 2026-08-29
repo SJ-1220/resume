@@ -16,6 +16,12 @@ export interface ProblemSolvingItem {
   body: string;
 }
 
+export interface ProjectImage {
+  /** Path under public/, WITH the basePath, e.g. "/resume/projects/manda-grid.png" */
+  src: string;
+  alt: string;
+}
+
 export interface ProjectBlock {
   title: string;
   period: string;
@@ -25,6 +31,7 @@ export interface ProjectBlock {
   problemSolving?: ProblemSolvingItem[];
   stack: string[];
   links?: LinkItem[];
+  images?: ProjectImage[];
 }
 
 export interface ExperienceItem {

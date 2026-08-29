@@ -1,23 +1,10 @@
-import type { ReactNode } from "react";
 import Link from "next/link";
 import type {
   ProjectBlock as ProjectBlockType,
   ResumeData,
   UIStrings,
 } from "@/content/types";
-
-// Renders `backtick`-wrapped spans as inline <code>; everything else stays text.
-function withCode(text: string): ReactNode[] {
-  return text.split(/(`[^`]+`)/g).map((part, i) =>
-    part.startsWith("`") && part.endsWith("`") ? (
-      <code key={i} className="code">
-        {part.slice(1, -1)}
-      </code>
-    ) : (
-      part
-    ),
-  );
-}
+import { withCode } from "@/lib/with-code";
 
 function ProjectBlock({
   project,
@@ -33,6 +20,15 @@ function ProjectBlock({
         <span className="period">{project.period}</span>
         {project.status ? <span className="status">{project.status}</span> : null}
       </p>
+
+      {project.images && project.images.length > 0 ? (
+        <div className="project-shots">
+          {project.images.map((img) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img key={img.src} src={img.src} alt={img.alt} loading="lazy" />
+          ))}
+        </div>
+      ) : null}
 
       <div className="block">
         <p className="label">{labels.overview}</p>

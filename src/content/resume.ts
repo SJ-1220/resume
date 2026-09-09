@@ -69,24 +69,71 @@ export const resume: Record<Locale, ResumeData> = {
         period: "2025.11 – present",
         projects: [
           {
-            title: "Railway maintenance safety-monitoring system",
+            title: "Human-error management system for railway workers",
             period: "2026.01 – present",
             overview:
-              "An IoT platform for railway power-cut maintenance that tracks grounding status and worker location in real time, so a work line can be verified de-energized before work begins. Delivered as a control-room web app, a field-worker mobile app, and a backend, with several external systems integrated.",
+              "A full-stack control system to analyze, assess, and prevent human error at railway work sites. A React/MUI admin dashboard, a Flutter field-worker app, and a Node.js backend collecting real-time equipment telemetry over MQTT / WebSocket.",
             contributions: [
-              "Field app (Flutter): login, job flow, safety-rule prompts, and real-time sync of worker / equipment location and safe-vs-deviated state.",
-              "Control web (React): role-based dashboards, power-cut approval flow, and map-based work-zone display.",
-              "Backend (Node.js): a location-based deviation-judgement API and REST / MQTT integration with external systems.",
+              "Pulled freight data from an external logistics system by real-time crawl and merged it with on-site manual entry into one view.",
+              "Ported the worker / location / equipment / organization management features — web-only until then — into the Flutter field app.",
+              "Built the MQTT pipeline that receives device telemetry — from broker / router / topic modules through event handlers, checkout/return identification, and event-identifier mapping.",
+              "Physically split the database from a parallel control system and migrated dummy data to real operational data.",
+            ],
+            problemSolving: [
+              {
+                title: "3-party integration: mismatched event identifier",
+                body: "The interface spec, the external system's code, and the key we needed all disagreed, so receive tests failed. Traced the change history to a commented-out early mapping that had been reused and hardened, and had the sending team correct it.",
+              },
+              {
+                title: "Misjudged a stateful external server as a passthrough",
+                body: "Reusing fixed test-device data caused repeated \"already checked out\" conflicts. Found the server keeps device state internally; switched to a fresh device-ID pair per run with strict 1:1 checkout/return, and pre-blocked duplicate requests on our side.",
+              },
             ],
             stack: [
-              "React",
+              "React 19",
+              "MUI",
               "Flutter",
+              "Dio",
               "Node.js",
               "Express",
               "MariaDB",
               "MQTT",
-              "WebSocket",
-              "Google Maps API",
+              "Puppeteer",
+            ],
+          },
+          {
+            title: "Railway power-cut work safety-monitoring system",
+            period: "2026.05 – present",
+            overview:
+              "Monitors, during railway power-cut work, the connection of grounding hooks and the real-time location-based safety state (normal / deviated) of workers and equipment. A React / Google Maps control web, a Flutter app, and a Node.js backend relaying MQTT telemetry over WebSocket. Eumtech led the software.",
+            contributions: [
+              "Rebuilt my assigned app screens on a new layered architecture (`Widget → ViewModel → Service → Repository`), referencing a handed-over legacy app.",
+              "Job start/complete flow, safety-rule popups, responsible-worker execution gating, de-energize timer, 1-second polling sync.",
+              "Multi-role control dashboards; Google Maps rendering of work zones, grounding points, and hazard radius.",
+              "Real-time deviation-judgement API — distance & sustain-time based, 8 state groups, hysteresis, FSM guards.",
+              "External grounding-hook checkout/return REST + MQTT event integration.",
+            ],
+            problemSolving: [
+              {
+                title: "Triplicated judgement → one server-authoritative source",
+                body: "App, web, and server each computed the safety judgement, so screens could disagree and every criteria change meant editing three places. Redefined the conditions along time / distance / subject axes and moved the logic to the server; clients now just display the result, and later criteria changes only touched server thresholds.",
+              },
+              {
+                title: "Deciding to rebuild the legacy app",
+                body: "The handed-over app was flat and partly mock-driven — a poor base for the incoming features and UI swap. The team agreed on a layered architecture; I reimplemented my screens against the real API, and they're still the codebase's core.",
+              },
+            ],
+            stack: [
+              "React 19",
+              "MUI",
+              "Google Maps JS API",
+              "Flutter",
+              "Provider",
+              "Dio",
+              "Node.js",
+              "Express",
+              "MariaDB",
+              "MQTT",
             ],
           },
         ],
@@ -96,15 +143,15 @@ export const resume: Record<Locale, ResumeData> = {
       {
         title: "Manda — 9×9 Mandalart goal-planning app",
         period: "2026.02 – 2026.04",
-        status: "Released on Google Play (v1.0.0+2)",
+        status: "Released on Google Play (v1.0.0)",
         overview:
           "A solo project taken from concept to store release: an offline-first mobile app for breaking a goal down with the 9×9 Mandalart technique.",
         contributions: [
           "Modeled the 81-cell, 3-level hierarchy (1 core → 8 sub → 64 detail) as a flat list keyed by `id` / `parentId` / `level` instead of a nested tree, which sped up rendering and local reads.",
-          "Centralized every data change in a Provider layer so the 3×3 focus view and 9×9 full view stay in sync in real time.",
+          "Centralized every data change in a Provider layer so the 3×3 focus view and 9×9 full view stay in sync in real time; zoom-in / zoom-out navigation between the two, plus pinch-zoom / pan.",
           "Wrote state changes to disk immediately on every change, rather than relying on OS lifecycle hooks — removing the data-loss edge case on force-quit.",
-          "Applied a `copyWith`-based immutability pattern across the data layer to keep sibling and parent cells from corrupting each other.",
-          "Custom KO/EN localization, launcher icons and native splash, release signing, store review and deployment.",
+          "Custom KO/EN localization, Dark/Light theme, launcher icons and native splash, release signing, store review and deployment.",
+          "Set up a GitHub Actions pipeline (static analysis, format check, build) and a comment-triggered Claude-based automatic PR code review.",
         ],
         stack: ["Flutter", "Dart", "Hive", "Provider", "fl_chart"],
         links: [
@@ -299,24 +346,71 @@ export const resume: Record<Locale, ResumeData> = {
         period: "2025.11 – 현재",
         projects: [
           {
-            title: "철도 유지보수 안전 관제 시스템",
+            title: "철도 작업 인적오류 관리 시스템",
             period: "2026.01 – 현재",
             overview:
-              "철도 급단전 작업을 위한 IoT 관제 플랫폼. 접지 상태와 작업자 위치를 실시간으로 추적해 작업 전 해당 작업선이 안전하게 단전됐는지 검증합니다. 관제 웹, 작업자 앱, 백엔드로 구성되며 여러 외부 시스템과 연동됩니다.",
+              "철도 작업 현장의 인적오류를 분석·평가·예방하는 풀스택 관제 시스템입니다. 관리자 대시보드(React/MUI), 현장 작업자 앱(Flutter), 실시간 장비 데이터를 MQTT/WebSocket으로 수집하는 백엔드(Node.js)로 구성됩니다.",
             contributions: [
-              "작업자 앱(Flutter): 로그인, 작업 흐름, 안전수칙 팝업, 작업자·장비 위치와 정상/이탈 상태 실시간 동기화 구현.",
-              "관제 웹(React): 권한별 대시보드, 단전 승인 흐름, 지도 기반 작업구역 표시 구현.",
-              "백엔드(Node.js): 위치 기반 이탈 판정 API, 외부 시스템과의 REST / MQTT 연동 구현.",
+              "외부 물류 시스템의 화물 데이터를 실시간 크롤링으로 받아 오고, 현장의 수동 입력과 한 화면에서 통합.",
+              "웹에만 있던 작업자·위치·장비·조직 관리 기능을 현장 앱(Flutter)으로 이식.",
+              "장비 원격 데이터를 수신하는 MQTT 파이프라인 구현 — 브로커·라우터·토픽 모듈부터 이벤트 핸들러, 장비 불출/반납 식별, 식별자 매핑까지 담당.",
+              "함께 개발하던 다른 관제 시스템과 DB를 물리적으로 분리하고, 더미 데이터를 실운영 데이터로 전환.",
+            ],
+            problemSolving: [
+              {
+                title: "3자 연동에서 이벤트 식별자 불일치",
+                body: "명세서 정의, 외부 시스템 코드, 우리가 필요한 키가 모두 달라 수신 테스트가 실패했습니다. Git 이력을 추적해 주석 처리됐던 옛 매핑이 재사용돼 굳어진 것을 규명하고, 외부 팀에 수정을 요청해 정상화했습니다.",
+              },
+              {
+                title: "Stateful 외부 서버를 단순 중계로 오판",
+                body: "고정 테스트 장비 데이터를 반복 사용해 '이미 불출됨' 충돌이 계속 났습니다. 외부 서버가 장비 상태를 내부에 저장한다는 것을 규명하고, 테스트마다 새 장비 ID 쌍으로 불출–반납을 1:1로 맞추고 우리 쪽 중복 불출도 사전 차단했습니다.",
+              },
             ],
             stack: [
-              "React",
+              "React 19",
+              "MUI",
               "Flutter",
+              "Dio",
               "Node.js",
               "Express",
               "MariaDB",
               "MQTT",
-              "WebSocket",
-              "Google Maps API",
+              "Puppeteer",
+            ],
+          },
+          {
+            title: "철도 급단전 작업 안전 관제 시스템",
+            period: "2026.05 – 현재",
+            overview:
+              "철도 급단전 작업에서 접지걸이 연동과 작업자·장비의 위치 기반 실시간 안전 상태(정상/이탈)를 관제하는 시스템입니다. 관제 웹(React/Google Maps), 앱(Flutter), MQTT 텔레메트리를 WebSocket으로 중계하는 백엔드(Node.js)로 구성되며, 이음텍이 SW 개발을 담당했습니다.",
+            contributions: [
+              "인수한 레거시 앱을 참고해 새 계층 아키텍처(`Widget → ViewModel → Service → Repository`)로 담당 화면 재구현.",
+              "작업 시작/완료 흐름, 안전수칙 팝업, 작업 책임자 실행 제한, 단전 타이머, 1초 폴링 동기화 구현.",
+              "다중 권한 관제 대시보드, Google Maps 기반 작업구역·접지포인트·위험구역 표시.",
+              "거리·지속시간 기반 실시간 이탈 판정 API 구축 — 8개 상태 그룹, 히스테리시스, FSM 가드.",
+              "외부 접지걸이 불출/반납 REST + MQTT 이벤트 연동.",
+            ],
+            problemSolving: [
+              {
+                title: "앱·웹·서버 3중 판정을 서버 단일 소스로 전환",
+                body: "앱·웹·서버가 안전 판정을 각자 계산해 화면이 어긋났고, 기준을 바꿀 때마다 세 곳을 수정해야 했습니다. 판정 조건을 시간·거리·대상 세 축으로 재정의해 서버로 일원화하고 클라이언트는 결과만 표시하도록 바꿔, 이후 기준이 여러 번 바뀌어도 서버 값만 고치면 됐습니다.",
+              },
+              {
+                title: "레거시 앱 재구현 판단",
+                body: "인수한 앱은 평면 구조에 일부 목데이터 기반이라 추가될 기능과 UI 교체를 감당하기 어려웠습니다. 팀이 계층 구조를 합의한 뒤 제가 맡은 화면을 실 API 연동으로 새로 구현했고, 지금도 코드베이스의 핵심으로 유지되고 있습니다.",
+              },
+            ],
+            stack: [
+              "React 19",
+              "MUI",
+              "Google Maps JS API",
+              "Flutter",
+              "Provider",
+              "Dio",
+              "Node.js",
+              "Express",
+              "MariaDB",
+              "MQTT",
             ],
           },
         ],
@@ -326,15 +420,15 @@ export const resume: Record<Locale, ResumeData> = {
       {
         title: "Manda — 9×9 만다라트 목표 계획 앱",
         period: "2026.02 – 2026.04",
-        status: "Google Play 출시 (v1.0.0+2)",
+        status: "Google Play 출시 (v1.0.0)",
         overview:
           "기획부터 스토어 출시까지 1인 개발한 9×9 만다라트 기법으로 목표를 쪼개는 오프라인 퍼스트 모바일 앱입니다.",
         contributions: [
           "81칸 3단계 계층(핵심 1 → 하위 8 → 세부 64)을 중첩 트리 대신 `id` / `parentId` / `level` 기반 평면 리스트로 모델링해 렌더링과 로컬 조회를 최적화.",
-          "모든 데이터 변경을 Provider 레이어로 중앙집중화해 3×3 집중 뷰와 9×9 전체 뷰를 실시간 동기화.",
+          "모든 데이터 변경을 Provider 레이어로 중앙집중화해 3×3 집중 뷰와 9×9 전체 뷰를 실시간 동기화, 두 뷰 간 zoom-in/zoom-out 네비게이션과 pinch-zoom·pan 제스처 구현.",
           "OS 생명주기 훅에 기대지 않고, 상태가 바뀔 때마다 즉시 디스크에 기록해 강제 종료 시 데이터 손실 방지.",
-          "데이터 레이어 전반에 `copyWith` 기반 불변성 패턴을 적용해 형제·부모 셀 간 상태 오염 차단.",
-          "커스텀 한/영 다국어, 런처 아이콘·네이티브 스플래시, 릴리스 서명, 스토어 심사·배포.",
+          "커스텀 한/영 다국어, 다크/라이트 테마, 런처 아이콘·네이티브 스플래시, 릴리스 서명, 스토어 심사·배포.",
+          "GitHub Actions로 정적 분석·포매팅 검사·빌드 파이프라인 구성, 코멘트로 트리거되는 Claude 기반 자동 PR 코드 리뷰 직접 설계·적용.",
         ],
         stack: ["Flutter", "Dart", "Hive", "Provider", "fl_chart"],
         links: [

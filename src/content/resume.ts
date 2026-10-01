@@ -76,7 +76,7 @@ export const resume: Record<Locale, ResumeData> = {
             overview:
               "A full-stack control system to analyze, assess, and prevent human error at railway work sites. A React/MUI admin dashboard, a Flutter field-worker app, and a Node.js backend collecting real-time equipment telemetry over MQTT / WebSocket.",
             contributions: [
-              "Pulled freight data from an external logistics system by real-time crawl and merged it with on-site manual entry into one view.",
+              "Built a Puppeteer-based NXLogis freight-train collection pipeline with 5-minute background DB snapshots and on-demand backfill for historical dates outside the normal collection window, merging the result with on-site manual entry into one dashboard view.",
               "Ported the worker / location / equipment / organization management features — web-only until then — into the Flutter field app.",
               "Built the MQTT pipeline that receives device telemetry — from broker / router / topic modules through event handlers, checkout/return identification, and event-identifier mapping.",
               "Physically split the database from a parallel control system and migrated dummy data to real operational data.",
@@ -87,8 +87,8 @@ export const resume: Record<Locale, ResumeData> = {
                 body: "The interface spec, the external system's code, and the key we needed all disagreed, so receive tests failed. Traced the change history to a commented-out early mapping that had been reused and hardened, and had the sending team correct it.",
               },
               {
-                title: "Misjudged a stateful external server as a passthrough",
-                body: "Reusing fixed test-device data caused repeated \"already checked out\" conflicts. Found the server keeps device state internally; switched to a fresh device-ID pair per run with strict 1:1 checkout/return, and pre-blocked duplicate requests on our side.",
+                title: "Partial crawl commits exposed inconsistent data",
+                body: "During a crawl, inactive trains were saved before active-train detail requests finished, creating a window where queries could see only a partial snapshot and return an empty list after filtering. Reproduced it with 5-second interval queries, then changed the flow to collect one full crawl cycle and commit it in a single DB transaction so only complete snapshots are exposed.",
               },
             ],
             stack: [
@@ -368,7 +368,7 @@ export const resume: Record<Locale, ResumeData> = {
             overview:
               "철도 작업 현장의 인적오류를 분석·평가·예방하는 풀스택 관제 시스템입니다. 관리자 대시보드(React/MUI), 현장 작업자 앱(Flutter), 실시간 장비 데이터를 MQTT/WebSocket으로 수집하는 백엔드(Node.js)로 구성됩니다.",
             contributions: [
-              "외부 물류 시스템의 화물 데이터를 실시간 크롤링으로 받아 오고, 현장의 수동 입력과 한 화면에서 통합.",
+              "Puppeteer 기반 NXLogis 화물열차 수집 파이프라인 구축 — 5분 주기 백그라운드 DB 스냅샷, 수집 범위 밖 과거 날짜 온디맨드 백필, 현장 수동 입력 데이터와 관제 화면 통합까지 구현.",
               "웹에만 있던 작업자·위치·장비·조직 관리 기능을 현장 앱(Flutter)으로 이식.",
               "장비 원격 데이터를 수신하는 MQTT 파이프라인 구현 — 브로커·라우터·토픽 모듈부터 이벤트 핸들러, 장비 불출/반납 식별, 식별자 매핑까지 담당.",
               "함께 개발하던 다른 관제 시스템과 DB를 물리적으로 분리하고, 더미 데이터를 실운영 데이터로 전환.",
@@ -379,8 +379,8 @@ export const resume: Record<Locale, ResumeData> = {
                 body: "명세서 정의, 외부 시스템 코드, 우리가 필요한 키가 모두 달라 수신 테스트가 실패했습니다. Git 이력을 추적해 주석 처리됐던 옛 매핑이 재사용돼 굳어진 것을 규명하고, 외부 팀에 수정을 요청해 정상화했습니다.",
               },
               {
-                title: "Stateful 외부 서버를 단순 중계로 오판",
-                body: "고정 테스트 장비 데이터를 반복 사용해 '이미 불출됨' 충돌이 계속 났습니다. 외부 서버가 장비 상태를 내부에 저장한다는 것을 규명하고, 테스트마다 새 장비 ID 쌍으로 불출–반납을 1:1로 맞추고 우리 쪽 중복 불출도 사전 차단했습니다.",
+                title: "크롤링 중 부분 스냅샷 노출로 발생한 데이터 일관성 문제",
+                body: "운휴 열차가 먼저 저장되고 운행 열차 상세 조회가 뒤늦게 반영되면서, 크롤링 도중 조회 시 필터 결과가 빈 목록으로 보이는 문제를 5초 간격 연속 조회로 재현했습니다. 한 주기의 수집 결과를 모두 모은 뒤 단일 DB 트랜잭션으로 일괄 커밋하도록 바꿔, 조회 시점과 무관하게 완전한 스냅샷만 노출되도록 했습니다.",
               },
             ],
             stack: [

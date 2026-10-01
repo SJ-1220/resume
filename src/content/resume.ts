@@ -19,6 +19,7 @@ export const ui: Record<Locale, UIStrings> = {
       projects: "Personal Projects",
       skills: "Skills",
       education: "Education",
+      certifications: "Certifications",
       contact: "Contact",
     },
     labels: {
@@ -46,6 +47,7 @@ export const ui: Record<Locale, UIStrings> = {
       projects: "개인 프로젝트",
       skills: "기술",
       education: "학력",
+      certifications: "자격증 및 어학",
       contact: "연락처",
     },
     labels: {
@@ -325,6 +327,21 @@ export const resume: Record<Locale, ResumeData> = {
         period: "2020 – 2025",
       },
     ],
+    certifications: [
+      {
+        label: "Certifications",
+        items: [
+          { label: "Big Data Analysis Engineer", period: "2024.12" },
+          { label: "Advanced Data Analytics Semi-Professional (ADsP)", period: "2024.09" },
+          { label: "SQL Developer (SQLD)", period: "2024.09" },
+          { label: "Data Architecture Semi-Professional (DAsP)", period: "2024.10" },
+        ],
+      },
+      {
+        label: "Language",
+        items: [{ label: "TOEIC 860", period: "2024.04" }],
+      },
+    ],
     contact: [
       { label: "Email", value: "mandagolab@gmail.com" },
       { label: "GitHub", href: "https://github.com/SJ-1220" },
@@ -593,6 +610,21 @@ export const resume: Record<Locale, ResumeData> = {
         org: "광운대학교",
         detail: "소프트웨어학부",
         period: "2020 – 2025",
+      },
+    ],
+    certifications: [
+      {
+        label: "자격증",
+        items: [
+          { label: "빅데이터분석기사", period: "2024.12" },
+          { label: "데이터분석 준전문가(ADsP)", period: "2024.09" },
+          { label: "SQL개발자(SQLD)", period: "2024.09" },
+          { label: "데이터아키텍처 준전문가(DAsP)", period: "2024.10" },
+        ],
+      },
+      {
+        label: "어학",
+        items: [{ label: "TOEIC 860점", period: "2024.04" }],
       },
     ],
     contact: [

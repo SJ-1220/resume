@@ -181,6 +181,23 @@ export default function ResumePrint({
           </p>
         ))}
       </section>
+
+      <section className="rp-cert">
+        <h2>{ui.sections.certifications}</h2>
+        {data.certifications.map((group) => (
+          <p key={group.label} className="rp-cert-row">
+            <b>{group.label}</b>{" "}
+            {group.items.map((item, i) => (
+              <span key={item.label}>
+                {i > 0 ? " · " : ""}
+                <span className="rp-nowrap">
+                  {item.label} ({item.period})
+                </span>
+              </span>
+            ))}
+          </p>
+        ))}
+      </section>
     </div>
   );
 }

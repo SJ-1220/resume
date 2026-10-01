@@ -359,6 +359,7 @@ body {
   border-radius: 999px;
   font-size: 0.78rem;
   color: var(--fg-muted);
+  white-space: nowrap;
 }
 
 .stack li::before {
@@ -463,7 +464,7 @@ body {
   margin: 0 auto;
   padding: 2.5rem 1.5rem 3rem;
   font-size: 10.5pt;
-  line-height: 1.5;
+  line-height: 1.45;
   color: #1a1a1a;
 }
 
@@ -480,7 +481,7 @@ body {
   letter-spacing: 0.14em;
   font-weight: 700;
   color: var(--fg-subtle);
-  margin: 1.5rem 0 0.6rem;
+  margin: 1.15rem 0 0.5rem;
   padding-bottom: 0.25rem;
   border-bottom: 1px solid var(--line);
   break-after: avoid;
@@ -541,7 +542,7 @@ body {
 }
 
 .rp-project {
-  margin: 0 0 1rem;
+  margin: 0 0 0.65rem;
   break-inside: avoid;
 }
 
@@ -554,7 +555,7 @@ body {
 }
 
 .rp-shots img {
-  max-height: 52mm;
+  max-height: 44mm;
   max-width: 100%;
   border: 1px solid var(--line);
   border-radius: 3px;
@@ -604,7 +605,7 @@ body {
 .rp-list li {
   position: relative;
   padding-left: 0.9rem;
-  margin: 0.15rem 0;
+  margin: 0.1rem 0;
 }
 
 .rp-list li::before {
@@ -615,7 +616,7 @@ body {
 }
 
 .rp-ps {
-  margin: 0.25rem 0;
+  margin: 0.2rem 0;
 }
 
 .rp-ps b {
@@ -662,6 +663,14 @@ body {
 
 .rp-skills {
   break-inside: avoid;
+}
+
+.rp-cert-row {
+  break-inside: avoid;
+}
+
+.rp-nowrap {
+  white-space: nowrap;
 }
 
 .resume-print .code {

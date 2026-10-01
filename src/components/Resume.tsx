@@ -173,6 +173,26 @@ export default function Resume({
         ))}
       </section>
 
+      <section aria-labelledby="certifications">
+        <h2 id="certifications">{ui.sections.certifications}</h2>
+        <div className="resume__skills">
+          {data.certifications.map((group) => (
+            <div className="resume__row resume__row--skill" key={group.label}>
+              <div className="resume__meta">
+                <h3>{group.label}</h3>
+              </div>
+              <ul className="stack">
+                {group.items.map((item) => (
+                  <li key={item.label}>
+                    {item.label} · {item.period}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section aria-labelledby="contact" className="contact">
         <h2 id="contact">{ui.sections.contact}</h2>
         <ul>

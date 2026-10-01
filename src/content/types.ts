@@ -55,6 +55,16 @@ export interface EducationItem {
   period: string;
 }
 
+export interface CertificationItem {
+  label: string;
+  period: string;
+}
+
+export interface CertificationGroup {
+  label: string;
+  items: CertificationItem[];
+}
+
 export interface ResumeData {
   name: string;
   tagline: string;
@@ -62,6 +72,7 @@ export interface ResumeData {
   projects: ProjectBlock[];
   skills: SkillGroup[];
   education: EducationItem[];
+  certifications: CertificationGroup[];
   contact: ContactItem[];
 }
 
@@ -87,6 +98,7 @@ export interface UIStrings {
     projects: string;
     skills: string;
     education: string;
+    certifications: string;
     contact: string;
   };
   labels: {

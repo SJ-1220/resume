@@ -341,7 +341,7 @@ export const resume: Record<Locale, ResumeData> = {
       },
       {
         label: "Language",
-        items: [{ label: "TOEIC 860", period: "2024.04" }],
+        items: [{ label: "TOEIC 860", period: "2026.04" }],
       },
     ],
     contact: [
@@ -628,7 +628,7 @@ export const resume: Record<Locale, ResumeData> = {
       },
       {
         label: "어학",
-        items: [{ label: "TOEIC 860점", period: "2024.04" }],
+        items: [{ label: "TOEIC 860점", period: "2026.04" }],
       },
     ],
     contact: [

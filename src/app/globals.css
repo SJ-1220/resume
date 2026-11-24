@@ -455,41 +455,43 @@ body {
 
 /* ---------------------------------------------------------------- *
  * Print / PDF view  (/print and /ko/print)
- * Screen styles below use pt so the on-screen preview matches paper;
- * @media print pins the page to A4 and tightens the margins.
+ * Mirrors the web layout: project title, then a two-column grid
+ * (meta on the left, story on the right). Every project starts on
+ * its own page and never splits — 5 projects → 5 A4 pages.
+ * Screen styles use pt so the on-screen preview matches paper.
  * ---------------------------------------------------------------- */
 
 .resume-print {
-  max-width: 44rem;
+  max-width: 48rem;
   margin: 0 auto;
   padding: 2.5rem 1.5rem 3rem;
   font-size: 10.5pt;
-  line-height: 1.42;
+  line-height: 1.55;
   color: #1a1a1a;
 }
 
+.resume-print p {
+  margin: 0;
+}
+
 .resume-print h1 {
-  font-size: 21pt;
+  font-size: 24pt;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
-  margin: 0 0 0.3rem;
+  margin: 0 0 0.45rem;
 }
 
 .resume-print h2 {
-  font-size: 8pt;
+  font-size: 8.5pt;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   font-weight: 700;
-  color: var(--fg-subtle);
-  margin: 1.15rem 0 0.5rem;
-  padding-bottom: 0.25rem;
+  color: var(--fg-muted);
+  margin: 0 0 0.9rem;
+  padding-bottom: 0.35rem;
   border-bottom: 1px solid var(--line);
   break-after: avoid;
-}
-
-.resume-print h3 {
-  font-size: 11.5pt;
-  margin: 0 0 0.15rem;
 }
 
 .rp-hint {
@@ -520,38 +522,165 @@ body {
   text-decoration: underline;
 }
 
+/* ---------- header ---------- */
+
 .rp-header {
   border-bottom: 2px solid var(--accent);
-  padding-bottom: 0.75rem;
-  margin-bottom: 0.25rem;
+  padding-bottom: 0.9rem;
+  margin-bottom: 1.6rem;
 }
 
 .rp-contact {
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.6rem !important;
   font-size: 9pt;
   color: var(--fg-muted);
 }
 
 .rp-tagline {
-  margin: 0;
   color: var(--fg-muted);
 }
 
+/* ---------- experience head ---------- */
+
 .rp-exp-head {
-  margin: 0 0 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.7rem;
+  margin: 0 0 1.1rem !important;
 }
 
+.rp-exp-head b {
+  font-size: 12pt;
+  font-weight: 700;
+}
+
+.rp-exp-role {
+  color: var(--fg-muted);
+}
+
+/* ---------- project ---------- */
+
 .rp-project {
-  margin: 0 0 0.65rem;
   break-inside: avoid;
+}
+
+/* one project per page */
+.rp-project + .rp-project,
+.rp-exp + .rp-exp,
+.rp-section--projects {
+  break-before: page;
+}
+
+.rp-title {
+  margin: 0 0 0.85rem;
+  font-size: 14pt;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.rp-grid {
+  display: grid;
+  grid-template-columns: 36mm 1fr;
+  gap: 0 7mm;
+}
+
+@media screen and (max-width: 600px) {
+  .rp-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* left column: meta */
+
+/* page 1 already shows the company head right above the first project */
+.rp-exp .rp-project:first-of-type .rp-side-org {
+  display: none;
+}
+
+.rp-side {
+  font-size: 8.5pt;
+  line-height: 1.5;
+  color: var(--fg-muted);
+  overflow-wrap: anywhere;
+}
+
+.rp-side-org {
+  margin-bottom: 0.55rem !important;
+}
+
+.rp-side-org b {
+  display: block;
+  color: var(--fg);
+  font-weight: 700;
+}
+
+.rp-side-org span {
+  display: block;
+}
+
+.rp-side-period {
+  color: var(--fg-subtle);
+}
+
+.rp-side .rp-status {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.rp-side-label {
+  margin: 0.95rem 0 0.3rem !important;
+  font-size: 7pt;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.rp-side-stack {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rp-side-stack li {
+  margin: 0.05rem 0;
+}
+
+.rp-side-links {
+  margin-top: 0.95rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+}
+
+.rp-link + .rp-link {
+  margin-top: 0.45rem !important;
+}
+
+.rp-link a {
+  display: block;
+  font-weight: 600;
+}
+
+.rp-link .rp-linkurl {
+  display: block;
+  font-size: 7.5pt;
+  line-height: 1.4;
+}
+
+/* right column: story */
+
+.rp-main {
+  min-width: 0;
 }
 
 .rp-shots {
   display: flex;
   flex-wrap: wrap;
   gap: 6pt;
-  margin: 0.4rem 0 0.5rem;
-  break-inside: avoid;
+  margin: 0 0 0.8rem;
 }
 
 .rp-shots img {
@@ -562,50 +691,33 @@ body {
 }
 
 .rp-shots .shot--wide {
-  max-height: 82mm;
-  max-width: 100%;
-  width: auto;
-}
-
-.rp-meta {
-  margin: 0 0 0.35rem;
-  font-size: 9pt;
-  color: var(--fg-subtle);
-}
-
-.rp-meta .rp-status {
-  margin-left: 0.6rem;
-  color: var(--accent);
+  width: 100%;
+  max-height: none;
 }
 
 .rp-overview {
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.2rem !important;
 }
 
 .rp-label {
-  margin: 0.55rem 0 0.2rem;
+  margin: 0.95rem 0 0.3rem !important;
   font-size: 7.5pt;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   font-weight: 700;
   color: var(--accent);
-}
-
-.rp-label--inline {
-  display: inline;
-  margin: 0;
 }
 
 .rp-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 0.3rem;
+  margin: 0;
 }
 
 .rp-list li {
   position: relative;
-  padding-left: 0.9rem;
-  margin: 0.1rem 0;
+  padding-left: 0.95rem;
+  margin: 0.22rem 0;
 }
 
 .rp-list li::before {
@@ -616,25 +728,11 @@ body {
 }
 
 .rp-ps {
-  margin: 0.2rem 0;
+  margin: 0.4rem 0 !important;
 }
 
 .rp-ps b {
-  font-weight: 650;
-}
-
-.rp-stack {
-  margin: 0.45rem 0 0.15rem;
-}
-
-.rp-links {
-  margin: 0.35rem 0 0;
-  font-size: 9pt;
-}
-
-.rp-link {
-  line-height: 1.6;
-  overflow-wrap: anywhere;
+  font-weight: 700;
 }
 
 /* every real hyperlink in the print view reads as a link (screen preview + PDF) */
@@ -656,17 +754,47 @@ body {
   color: var(--fg-subtle);
 }
 
-.resume-print .rp-skills p,
-.resume-print section > p {
-  margin: 0.18rem 0;
+/* ---------- skills / education / certifications ---------- */
+
+/* the last project shares its page with the tail — keep its shots compact */
+.rp-section--projects .rp-project:last-of-type .rp-shots img {
+  max-height: 30mm;
 }
 
-.rp-skills {
+.rp-tail {
+  margin-top: 1rem;
+  border-bottom: 1px solid var(--line);
   break-inside: avoid;
 }
 
-.rp-cert-row {
-  break-inside: avoid;
+/* same grid as the projects: section label left, content right (like the web) */
+.rp-tail-row {
+  display: grid;
+  grid-template-columns: 36mm 1fr;
+  gap: 0 7mm;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--line);
+}
+
+@media screen and (max-width: 600px) {
+  .rp-tail-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resume-print .rp-tail-row h2 {
+  margin: 0;
+  padding: 0.3em 0 0;
+  border: 0;
+  line-height: 1.5;
+}
+
+.rp-tail-row p + p {
+  margin-top: 0.2rem !important;
+}
+
+.rp-tail b {
+  font-weight: 700;
 }
 
 .rp-nowrap {
@@ -679,6 +807,9 @@ body {
   background: #f1f1f4;
   padding: 0.05em 0.3em;
   border-radius: 3px;
+  /* wrap at the spaces in `A → B → C`, not mid-identifier */
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 @media print {
